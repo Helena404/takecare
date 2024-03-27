@@ -1,0 +1,87 @@
+
+
+/*---------------------------education-------------------------------------*/
+
+.articles {
+
+	// .articles__container
+
+	&__container {
+	}
+
+	// .articles__menu
+
+	&__menu {
+		padding: 3.5rem 0;
+	}
+
+	// .articles__body
+
+	&__body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	// .articles__item
+
+	&__item {
+	}
+
+	// .articles__big
+
+	&__big {
+	}
+
+	// .articles__big-wrap
+
+	&__big-wrap {
+		display: flex;
+
+
+	}
+
+	// .articles__big-img
+
+	&__big-img {
+		flex: 0 0 55rem;
+	}
+
+	// .articles__big-info
+
+	&__big-info {
+	}
+
+	// .articles__big-title
+
+	&__big-title {
+	}
+
+	// .articles__big-group
+
+	&__big-group {
+	}
+
+	// .articles__big-btn
+
+	&__big-btn {
+	}
+}
+.menu {
+
+	// .menu__link
+
+	&__link {
+	}
+}
+.article {
+
+	// .article__big-text
+
+	&__big-text {
+	}
+}
+.btn {
+}
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="header__container">
+			<a href="index.html" class="header__logo">
+				<img src="img/Logo.svg" alt="logo">
+			</a>
+			<nav class="header__menu menu">
+				<ul class="menu__body">
+					<li class="menu__item"><a href="index.html" class="menu__link">Главная</a></li>
+					<li class="menu__item"><a href="object.html" class="menu__link">Объекты</a></li>
+					<li class="menu__item"><a href="map.html" class="menu__link">Карта</a></li>
+					<li class="menu__item"><a href="" class="menu__link">Образование</a></li>
+					<li class="menu__item"><a href="#footer" class="menu__link">Контакты</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main class="maps">
+		<div id="map" style="width: 100%; height: 80rem;"></div>
+		<div class="maps__filters-container filters-container">
+			<form action="map" method="post">
+				<h4>Состояние:</h4>
+				<fieldset>
+					<label for="">
+						<input type="checkbox" name="condition" id="good">
+						<span>Хорошее</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Удовлетворительное</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Неудовлетворительное</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Утрачен</span>
+					</label>
+				</fieldset>
+			</form>
+			<form action="map" method="post">
+				<h4>Век:</h4>
+				<fieldset>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XV</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XVI</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XVII</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XVIII</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XIX</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>XX</span>
+					</label>
+				</fieldset>
+			</form>
+			<form action="map" method="post">
+				<h4>Вид объекта:</h4>
+				<fieldset>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Памятник</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Элемент ансамбля</span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Достопримечательное место </span>
+					</label>
+					<br>
+					<label for="">
+						<input type="checkbox" name="" id="">
+						<span>Религиозный объект</span>
+					</label>
+				</fieldset>
+			</form>
+		</div>
+	</main>
+	<footer class="footer" id="footer">
+		<div class="footer__container">
+			<a href="#" class="footer__logo">
+				<img src="img/Logo.svg" alt="logo">
+			</a>
+			<div class="footer__contacts">
+				<div class="footer__contacts-title">Контакты</div>
+				<a class="footer__contact">
+					<img src="img/footer/pin.svg" alt="pin" class="footer__contact-icon">
+					<span>город Москва</span>
+				</a>
+				<a class="footer__contact">
+					<img src="img/footer/mail.svg" alt="pin" class="footer__contact-icon">
+					<span>hehelena404@gmail.com</span>
+				</a>
+			</div>
+			<div class="footer__rights">
+				<span>© 2024 Бережно к городу</span>
+				<span>Все права защищены</span>
+			</div>
+		</div>
+	</footer>
+	<script src="https://api-maps.yandex.ru/v3/?apikey=f884cad0-99eb-44d7-8a8c-3965f1963bc3&lang=ru_RU"></script>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

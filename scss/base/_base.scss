@@ -1,0 +1,62 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html{
+	font-size: 62.5%;
+}
+ul {
+	list-style: none;
+}
+*img{
+	max-width: 100%;
+}
+a{
+	text-decoration: none;
+	color:var(--text-color);
+	cursor: pointer;
+}
+:root{
+	--bg-color:#F4F6F5;
+	--accent-color-orr:#C47344;
+	--accent-color:#FFE9DC;
+	--text-color:#2C2D35;
+	--card-bg-color:#FBF8F5;
+
+	--transition-duration: 0.2s;
+}
+
+body{
+	background-color: var(--bg-color);
+}
+
+
+
+[class*="__container"]{
+	max-width: 114rem;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.back {
+	&__a {
+		display: flex;
+		align-items: center;
+		color:#7A7A7A;
+		padding: 2rem 0;
+	}
+}
+
+html {
+	/**
+	   Пригодится в большинстве ситуаций
+	   (когда, например, нужно будет "прижать" футер к низу сайта)
+	  */
+	height: 100%;
+	/**
+	   Плавный скролл
+	  */
+	scroll-behavior: smooth;
+  }

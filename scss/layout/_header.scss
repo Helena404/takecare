@@ -1,0 +1,56 @@
+/*=================Header===============*/
+.header {
+	padding: clamp(0.625rem, 0.259rem + 1.83vw, 1.563rem);
+	background-color: var(--accent-color);
+	// .header__container
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;// чтобы при сужении логотип с меню не слипался 
+	}
+
+	// .header__logo
+
+	&__logo {
+		max-width: 15rem;
+	}
+
+	// .header__menu
+
+	&__menu {
+	}
+}
+.menu {
+
+	// .menu__body
+
+	&__body {
+		display: flex;
+		align-items: center;
+		gap: 6rem;
+	}
+
+	// .menu__item
+
+	&__item {
+	}
+
+	// .menu__link
+
+	&__link {
+		font-size: 2rem;
+		font-weight: 500;
+		line-height: 2.8rem;
+		transition: color .2s;
+		@media (any-hover: hover){ //для всех утройств с курсором
+			&:hover{
+				color:var(--accent-color-orr);
+			}
+			&:active{
+				color: #EB9868;
+			}
+		}
+	}
+}
