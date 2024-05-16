@@ -1,0 +1,97 @@
+
+
+/* ============================Object=====================================*/
+
+.object {
+	padding-bottom: 6.5rem;
+
+	// .object__container
+
+	&__container {
+	}
+
+	// .object__title
+
+	&__title {
+
+	}
+
+	// .object__content
+
+	&__content {
+		display: flex;
+		gap:1.5rem;
+	}
+
+	// .object__photo
+
+	&__photo {
+   width:64rem;
+   height:40rem;
+   overflow: hidden;
+	}
+	&__photo img {
+		width: 100%; /* 100% ширины изображения */
+		height: 100%; /* 100% высоты изображения */
+		object-fit: cover; /* Изображение заполняет контейнер, сохраняя при этом пропорции */
+		//object-position: center center; 
+		 }
+
+	// .object__info
+
+	&__info {
+		padding: 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	// .object__info-title
+
+	&__info-title {
+		margin-bottom: 0;
+	}
+
+	// .object__info-divider
+
+	&__info-divider {
+		border-top: .1rem solid var(--accent-color-orr);
+	}
+	&__info-list {
+		
+	}
+
+	// .object__info-value
+
+	&__info-value {
+		margin-bottom: 1.5rem;
+	}
+}
+
+
+/*-------------------------history---------------------------------------*/
+
+.history {
+	padding-bottom: 6.5rem;
+
+	// .history__container
+
+	&__container {
+	}
+
+	// .history__title
+
+	&__title {
+	}
+
+	// .history__text
+
+	&__text {
+	}
+
+	// .history__p
+
+	&__p {
+		text-indent: 2rem;
+	}
+}

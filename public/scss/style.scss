@@ -1,0 +1,19 @@
+@import "./abstract/variables";
+
+@import "./base/base";
+@import "./base/normalize";
+@import "./base/typography";
+
+@import "./components/button";
+@import "./components/catalog";
+@import "./components/filters";
+
+@import "./layout/header";
+@import "./layout/modal";
+@import "./layout/footer";
+
+@import "./pages/education";
+@import "./pages/index";
+@import "./pages/map";
+@import "./pages/object";
+@import "./pages/objects";

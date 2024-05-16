@@ -1,0 +1,104 @@
+
+/*----------------------------hero------------------------------------*/
+
+.hero {
+	margin-bottom: 6.5rem;
+
+		// .hero__container
+
+		&__container {
+			display: flex;
+			align-items:center;
+			gap: 2.4rem;
+		}
+
+		// .hero__img
+
+		&__img {
+		}
+
+		// .hero__content
+
+		&__content {
+		}
+
+		// .hero__title
+
+		&__title {
+			font-size: 6rem;
+			font-weight: 500;
+			line-height: 110%;
+			max-width: 54rem;
+			padding-bottom: .8rem;
+			span{
+				color:var(--accent-color-orr);
+			}
+		}
+
+		// .hero__text
+
+		&__text {
+			color: rgb(134, 146, 139);
+			font-size: 1.8rem;
+			font-weight: 500;
+			line-height: 150%;
+			padding-bottom: 6rem;
+		}
+
+		// .hero__actions
+
+		&__actions {
+			display: flex;
+			gap: 3.8rem;
+		}
+
+
+		// .hero__btn-blue
+
+		&__btn-blue {
+			background-color: #4A7FA1;
+			color: var(--bg-color);
+			border-color: var(--bg-color);
+			transition: all .2s;
+			@media (any-hover: hover){ //для всех утройств с курсором
+				&:hover{
+					background-color:#366685;
+					color: #fff;
+				}
+				&:active{
+					background-color:#264b64;
+				}
+			}
+		}
+}
+
+/*----------------about--------------------*/
+.about {
+	margin-bottom: 5rem;
+	// .about__container
+
+	&__container {
+	}
+
+	// .about__title
+
+	&__title {
+	}
+
+	// .about__text
+
+	&__text {
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 120%;
+	span{
+		font-weight: 600;
+		}		
+	}
+	&__p{
+		margin-bottom: 1.5rem;
+	}
+}
+
+
+

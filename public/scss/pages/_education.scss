@@ -1,0 +1,99 @@
+
+
+/*---------------------------education-------------------------------------*/
+
+.articles {
+
+	// .articles__container
+
+	&__container {
+		padding-bottom: 30px;
+	}
+
+	// .articles__menu
+
+	&__menu {
+		padding: 3.5rem 0;
+	}
+
+	// .articles__body
+
+	&__body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	// .articles__item
+
+	&__item {
+	}
+
+	// .articles__big
+
+	&__big {
+	}
+
+	// .articles__big-wrap
+
+	&__big-wrap {
+		display: flex;
+		gap: 20px;
+
+	}
+
+	// .articles__big-img
+
+	&__big-img {
+		flex: 0 0 55rem;
+	}
+
+	// .articles__big-info
+
+	&__big-info {
+		display: flex;
+		flex-direction: column;
+		gap:30px;
+		
+	}
+
+	// .articles__big-title
+
+	&__big-title a{
+		font-size: 4rem;
+		line-height: 110%;
+	}
+
+	// .articles__big-group
+
+	&__big-group {
+		line-height: 150%;
+		color: var(--gray-color-text);
+	}
+
+	// .articles__big-btn
+
+	&__big-btn {
+		max-width: 300px;
+		background-color: var(--accent-color-orr);
+		color:#fff;
+	}
+}
+.menu {
+
+	// .menu__link
+
+	&__link {
+	}
+}
+.article {
+
+	// .article__big-text
+
+	&__big-text {
+		line-height: 150%;
+		font-size: 18px;
+	}
+}
+
+

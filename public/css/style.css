@@ -1,0 +1,660 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap");
+:root {
+  --bg-color:#F4F6F5;
+  --accent-color-orr:#C47344;
+  --accent-color:#FFE9DC;
+  --text-color:#2C2D35;
+  --card-bg-color:#FBF8F5;
+  --gray-color-text: #86928B;
+  --transition-duration: 0.2s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+ul {
+  list-style: none;
+}
+
+* img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+[class*=__container] {
+  max-width: 114rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.back__a {
+  display: flex;
+  align-items: center;
+  color: #7A7A7A;
+  padding: 2rem 0;
+}
+
+html {
+  /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  height: 100%;
+  /**
+     Плавный скролл
+    */
+  scroll-behavior: smooth;
+}
+
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+Убираем внутренние отступы слева тегам списков,
+у которых есть атрибут class
+  */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+Убираем внешние отступы body и двум другим тегам,
+у которых есть атрибут class
+  */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+Убираем внешние отступы вертикали нужным тегам,
+у которых есть атрибут class
+  */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+Убираем стандартный маркер маркированному списку,
+у которого есть атрибут class
+  */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+Обнуляем вертикальные внешние отступы параграфа,
+объявляем локальную переменную для внешнего отступа вниз,
+чтобы избежать взаимодействие с более сложным селектором
+  */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+Внешний отступ вниз для параграфа без атрибута class,
+который расположен не последним среди своих соседних элементов
+  */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+Упрощаем работу с изображениями
+  */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+Наследуем свойства шрифт для полей ввода
+  */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+   Плавный скролл
+  */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+   Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+Приводим к единому цвету svg-элементы
+  */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+Удаляем все анимации и переходы для людей,
+которые предпочитают их не использовать
+  */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-family: "Raleway", sans-serif;
+  color: var(--text-color);
+  font-size: 1.6rem;
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 110%;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.text {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+/*------General----------*/
+.btn {
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  border: 0.1rem solid var(--accent-color-orr);
+  padding: 2rem 6rem 2rem 6rem;
+  color: var(--accent-color-orr);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+@media (any-hover: hover) {
+  .btn:hover {
+    color: var(--accent-color);
+    border: 0.1rem solid var(--accent-color);
+    background-color: #EB9868;
+  }
+  .btn:active {
+    background-color: var(--accent-color-orr);
+  }
+}
+
+/*-----------------------------Catalog-----------------------------------*/
+.catalog {
+  padding-bottom: 6.5rem;
+}
+.catalog__cards {
+  display: flex;
+  gap: 5rem;
+}
+.catalog__card {
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+  height: 56rem;
+  background-color: var(--accent-color);
+  justify-content: space-between;
+  padding: 2rem;
+}
+.catalog__card-img {
+  width: 31rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.catalog__card-title {
+  font-size: 2.6rem;
+  font-weight: 500;
+  line-height: 3.5rem;
+}
+.filters-container {
+  background-color: rgba(244, 246, 245, 0.8);
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 1.6rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+}
+
+.filters-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filters-container::-webkit-scrollbar-thumb {
+  background-color: #B3B3A9;
+  border-radius: 10px;
+}
+
+.filters-container::-webkit-scrollbar-thumb:hover {
+  background-color: #9a9a93;
+}
+
+.filters-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filters-container input {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  vertical-align: middle;
+  accent-color: var(--accent-color-orr);
+}
+
+.filters-container fieldset {
+  border: none;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  box-shadow: 0px 32px 32px -24px rgba(0, 0, 0, 0.1);
+}
+
+/*=================Header===============*/
+.header {
+  padding: clamp(0.625rem, 0.259rem + 1.83vw, 1.563rem);
+  background-color: var(--accent-color);
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.header__logo {
+  max-width: 15rem;
+}
+.menu__body {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+.menu__link {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.8rem;
+  transition: color 0.2s;
+}
+@media (any-hover: hover) {
+  .menu__link:hover {
+    color: var(--accent-color-orr);
+  }
+  .menu__link:active {
+    color: #EB9868;
+  }
+}
+
+/* Стили для модального окна */
+.modal {
+  display: none;
+  position: fixed; /* Фиксированное позиционирование */
+  left: 0;
+  top: 0;
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  overflow: auto; /* Добавление прокрутки, если контент не помещается на экран */
+  background-color: rgba(0, 0, 0, 0.545); /* Цвет фона с небольшой прозрачностью */
+}
+
+/* Стили для контента модального окна */
+.modal-content {
+  border-radius: 20px;
+  background-color: #fefefe; /* Цвет фона контента */
+  margin: 100px auto; /* Отступы от краев экрана */
+  padding: 30px;
+  border: 1px solid #888; /* Рамка */
+  width: 600px; /* Ширина */
+  position: relative; /* Позиционирование относительно родительского блока */
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--accent-color-orr);
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 0 0 120px; /* Фиксированная ширина метки */
+  text-align: right; /* Выравнивание текста по правому краю */
+  margin-right: 10px; /* Отступ справа для создания промежутка между меткой и полем ввода */
+}
+
+.form-btn {
+  margin: 0 auto; /* Автоматическое выравнивание по центру */
+  display: block; /* Блочный элемент, чтобы применить margin: 0 auto */
+}
+
+/* Стили для инпутов внутри .form-group */
+.form-group input,
+.form-group textarea {
+  flex-grow: 1; /* Инпуты занимают оставшееся пространство */
+  height: 40px;
+}
+
+/* Стили для кнопки закрытия */
+.close {
+  position: absolute; /* Абсолютное позиционирование */
+  right: 20px;
+  top: 0px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*----------------footer----------------*/
+.footer {
+  background-color: var(--accent-color);
+  padding: 2rem 0;
+}
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer__contacts-title {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.8rem;
+}
+.footer__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.footer__rights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer span {
+  color: var(--gray-color-text);
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+/*---------------------------education-------------------------------------*/
+.articles__container {
+  padding-bottom: 30px;
+}
+.articles__menu {
+  padding: 3.5rem 0;
+}
+.articles__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.articles__big-wrap {
+  display: flex;
+  gap: 20px;
+}
+.articles__big-img {
+  flex: 0 0 55rem;
+}
+.articles__big-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.articles__big-title a {
+  font-size: 4rem;
+  line-height: 110%;
+}
+.articles__big-group {
+  line-height: 150%;
+  color: var(--gray-color-text);
+}
+.articles__big-btn {
+  max-width: 300px;
+  background-color: var(--accent-color-orr);
+  color: #fff;
+}
+
+.article__big-text {
+  line-height: 150%;
+  font-size: 18px;
+}
+
+/*----------------------------hero------------------------------------*/
+.hero {
+  margin-bottom: 6.5rem;
+}
+.hero__container {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+.hero__title {
+  font-size: 6rem;
+  font-weight: 500;
+  line-height: 110%;
+  max-width: 54rem;
+  padding-bottom: 0.8rem;
+}
+.hero__title span {
+  color: var(--accent-color-orr);
+}
+.hero__text {
+  color: rgb(134, 146, 139);
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 150%;
+  padding-bottom: 6rem;
+}
+.hero__actions {
+  display: flex;
+  gap: 3.8rem;
+}
+.hero__btn-blue {
+  background-color: #4A7FA1;
+  color: var(--bg-color);
+  border-color: var(--bg-color);
+  transition: all 0.2s;
+}
+@media (any-hover: hover) {
+  .hero__btn-blue:hover {
+    background-color: #366685;
+    color: #fff;
+  }
+  .hero__btn-blue:active {
+    background-color: #264b64;
+  }
+}
+
+/*----------------about--------------------*/
+.about {
+  margin-bottom: 5rem;
+}
+.about__text {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 120%;
+}
+.about__text span {
+  font-weight: 600;
+}
+.about__p {
+  margin-bottom: 1.5rem;
+}
+
+/*------------------------------map----------------------------------*/
+.maps__filters-container {
+  position: absolute;
+  top: 11rem;
+  left: 20rem;
+  min-width: 350px;
+}
+
+.object-info {
+  width: 250px;
+  background-color: var(--accent-color-orr);
+  position: absolute;
+  top: 200px;
+  right: 100px;
+}
+
+/* ============================Object=====================================*/
+.object {
+  padding-bottom: 6.5rem;
+}
+.object__content {
+  display: flex;
+  gap: 1.5rem;
+}
+.object__photo {
+  width: 64rem;
+  height: 40rem;
+  overflow: hidden;
+}
+.object__photo img {
+  width: 100%; /* 100% ширины изображения */
+  height: 100%; /* 100% высоты изображения */
+  object-fit: cover; /* Изображение заполняет контейнер, сохраняя при этом пропорции */
+}
+.object__info {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.object__info-title {
+  margin-bottom: 0;
+}
+.object__info-divider {
+  border-top: 0.1rem solid var(--accent-color-orr);
+}
+.object__info-value {
+  margin-bottom: 1.5rem;
+}
+
+/*-------------------------history---------------------------------------*/
+.history {
+  padding-bottom: 6.5rem;
+}
+.history__p {
+  text-indent: 2rem;
+}
+
+.objects__container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 45px;
+  margin-block: 2rem;
+}
+.objects__cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.objects__card {
+  display: flex;
+  gap: 30px;
+  padding: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--card-bg-color);
+}
+.objects__card:hover {
+  color: var(--accent-color-orr);
+  cursor: pointer;
+}
+.objects__card:active {
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.objects__card-img {
+  width: 20rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.object__card-info span {
+  display: block;
+  margin-bottom: 5px;
+}/*# sourceMappingURL=style.css.map */

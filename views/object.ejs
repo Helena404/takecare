@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/style.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="header__container">
+			<a href="/" class="header__logo">
+				<img src="/img/Logo.svg" alt="logo">
+			</a>
+			<nav class="header__menu menu">
+				<ul class="menu__body">
+					<li class="menu__item"><a href="/" class="menu__link">Главная</a></li>
+					<li class="menu__item"><a href="/objects" class="menu__link">Объекты</a></li>
+					<li class="menu__item"><a href="/map" class="menu__link">Карта</a></li>
+					<li class="menu__item"><a href="/education" class="menu__link">Образование</a></li>
+					<li class="menu__item"><a href="#footer" class="menu__link">Контакты</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main class="page">
+		<div class="back__container">
+			<a class="back__a" href="./objects.html">
+				<img src="/img/icons/arrow-back.svg" alt="back" class="">
+				<span>Назад</span>
+			</a>
+		</div>
+		<section class="object">
+			<div class="object__container">
+				<h1 class="object__title title">
+					<%= object.title %>
+				</h1>
+				<div class="object__content">
+					<div class="object__photo">
+						<img src=<%=object.photoUrl %> alt="Памятник Д.Н. Прянишникову">
+					</div>
+					<div class="object__info">
+						<h3 class="object__info-title title">Краткая информация</h3>
+						<hr class="object__info-divider">
+						<ul class="object__info-list">
+							<li class="object__info-value">
+								<strong>Адрес:</strong>
+								<%=object.address %>
+							</li>
+							<li class="object__info-value">
+								<strong>Номер в госреестре:</strong>
+								<%=object.gosreester %>
+							</li>
+							<li class="object__info-value">
+								<strong>Категория:</strong>
+								<%=object.category %>
+							</li>
+							<li class="object__info-value">
+								<strong>Вид объекта:</strong>
+								<%=object.typeRu %>
+							</li>
+							<li class="object__info-value">
+								<strong>Охранный статус:</strong>
+								<%=object.securityStatus %>
+							</li>
+							<li class="object__info-value">
+								<strong>Датировка:</strong>
+								<%=object.date %>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="history">
+			<div class="history__container">
+				<div class="history__title title">Об историческом памятнике</div>
+				<div class="history__text">
+					<p class="history__p">
+						<% const textLines=object.text.split('\n'); %>
+							<% textLines.forEach(line=> { %>
+								<p class="history__p">
+									<%= line %>
+								</p>
+								<% }); %>
+					</p>
+				</div>
+			</div>
+		</section>
+		<section class="catalog">
+			<div class="catalog__container">
+				<div class="catalog__title title">Галерея объектов</div>
+				<div class="catalog__cards">
+					<div class="catalog__card">
+						<img src="/img/catalog/01.png" alt="Памятник Д.Н. Прянишникову" srcset="">
+						<div class="catalog__card-title">Памятник Д.Н. Прянишникову</div>
+						<div class="catalog__card-adress">г. Москва, ул. Прянишникова, д. 6</div>
+						<button class="catalog__card-btn btn">Подробнее</button>
+					</div>
+					<div class="catalog__card">
+						<img src="/img/catalog/02.png" alt="Козина палата (детский приют)" srcset="">
+						<div class="catalog__card-title">Козина палата (детский приют)</div>
+						<div class="catalog__card-adress">Рогожский Посёлок ул., дом 29, стр. 4</div>
+						<button class="catalog__card-btn btn">Подробнее</button>
+					</div>
+					<div class="catalog__card">
+						<img src="/img/catalog/03.png" alt="Болотная площадь" srcset="">
+						<div class="catalog__card-title">Болотная площадь</div>
+						<div class="catalog__card-adress">Болотная площадь</div>
+						<button class="catalog__card-btn btn">Подробнее</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer class="footer" id="footer">
+		<div class="footer__container">
+			<a href="#" class="footer__logo">
+				<img src="/img/Logo.svg" alt="logo">
+			</a>
+			<div class="footer__contacts">
+				<div class="footer__contacts-title">Контакты</div>
+				<a class="footer__contact">
+					<img src="/img/footer/pin.svg" alt="pin" class="footer__contact-icon">
+					<span>город Москва</span>
+				</a>
+				<a class="footer__contact">
+					<img src="/img/footer/mail.svg" alt="pin" class="footer__contact-icon">
+					<span>hehelena404@gmail.com</span>
+				</a>
+			</div>
+			<div class="footer__rights">
+				<span>© 2024 Бережно к городу</span>
+				<span>Все права защищены</span>
+			</div>
+		</div>
+	</footer>
+	<script src="/js/object.js"></script>
+	<script src="/js/getObjectsForCatalog.js"></script>
+</body>
+
+</html>
