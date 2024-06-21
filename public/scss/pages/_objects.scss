@@ -62,3 +62,23 @@
 		margin-bottom: 5px;
 	}
 }
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.pagination-container button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--accent-color-orr-light);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pagination-container button.active {
+    background-color: var(--accent-color-orr);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="/img/icons/logo-icon.png">
+	<link rel="stylesheet" href="/css/style.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="header__container">
+			<a href="/" class="header__logo">
+				<img src="/img/Logo.svg" alt="logo">
+			</a>
+			<nav class="header__menu menu">
+				<ul class="menu__body">
+					<li class="menu__item"><a href="/" class="menu__link">Главная</a></li>
+					<li class="menu__item"><a href="/objects" class="menu__link">Объекты</a></li>
+					<li class="menu__item"><a href="/map" class="menu__link">Карта</a></li>
+					<li class="menu__item"><a href="/education" class="menu__link">Образование</a></li>
+					<li class="menu__item"><a href="#footer" class="menu__link">Контакты</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main class="article">
+		<div class="back__container">
+			<a class="back__a" href="">
+				<img src="/img/icons/arrow-back.svg" alt="back" class="">
+				<span>Назад</span>
+			</a>
+		</div>
+		<section class="article__content">
+			<div class="article__container">
+				<h1 class="article__title">
+					<%= article.title %>
+				</h1>
+				<img src="<%= article.img %>" alt="<%= article.title %>" class="article__img">
+				<p class="article__text">
+					<% const textLines=article.text.split('\n'); %>
+						<% textLines.forEach((line, index)=> { %>
+							<%= line %>
+								<% if (index !==textLines.length - 1) { %><br> <br>
+									<% } %>
+										<% }); %>
+				</p>
+			</div>
+		</section>
+	</main>
+	<footer class="footer" id="footer">
+		<div class="footer__container">
+			<a href="#" class="footer__logo">
+				<img src="/img/Logo.svg" alt="logo">
+			</a>
+			<div class="footer__contacts">
+				<div class="footer__contacts-title">Контакты</div>
+				<a class="footer__contact">
+					<img src="/img/footer/pin.svg" alt="pin" class="footer__contact-icon">
+					<span>город Москва</span>
+				</a>
+				<a class="footer__contact">
+					<img src="/img/footer/mail.svg" alt="pin" class="footer__contact-icon">
+					<span>hehelena404@gmail.com</span>
+				</a>
+			</div>
+			<div class="footer__rights">
+				<span>© 2024 Бережно к городу</span>
+				<span>Все права защищены</span>
+			</div>
+		</div>
+	</footer>
+	<script src="/js/back.js"></script>
+</body>
+
+</html>

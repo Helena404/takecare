@@ -1,44 +1,11 @@
-// Функция для отправки запроса на сервер и получения списка всех объектов
-async function getObjects() {
+let currentPage = 1;
+const itemsPerPage = 5;
+
+// Функция для запроса объектов с сервера с поддержкой пагинации
+async function getObjects(page = 1, limit = 5, filters = {}) {
     try {
-        const response = await fetch('/api/objects');
-        if (!response.ok) {
-            throw new Error('Failed to fetch objects');
-        }
-        const data = await response.json();
-        displayObjects(data); // Отображение всех объектов
-    } catch (error) {
-        console.error('Error fetching objects:', error);
-    }
-}
-
-async function fetchFilteredObjects() {
-    try {
-        await getObjects(); // Сначала получаем все объекты
-
-        const selectedStatuses = document.querySelectorAll('input[name="state"]:checked');
-        const selectedCenturies = document.querySelectorAll('input[name="century"]:checked');
-        const selectedTypes = document.querySelectorAll('input[name="type"]:checked');
-
-        let url = '/api/objects/filter';
-
-        const queryParams = {}; // Объект для хранения параметров запроса
-
-        // Добавляем параметры фильтрации в объект queryParams
-        queryParams.state = [];
-        selectedStatuses.forEach(status => {
-            queryParams.state.push(status.value);
-        });
-
-        queryParams.century = [];
-        selectedCenturies.forEach(century => {
-            queryParams.century.push(century.value);
-        });
-
-        queryParams.type = [];
-        selectedTypes.forEach(type => {
-            queryParams.type.push(type.value);
-        });
+        let url = `/api/objects?page=${page}&limit=${limit}`;
+        const queryParams = { ...filters };
 
         // Преобразуем массивы значений параметров в строку
         const queryString = Object.keys(queryParams)
@@ -53,25 +20,31 @@ async function fetchFilteredObjects() {
 
         // Проверяем, есть ли параметры для добавления к URL
         if (queryString) {
-            url += '?' + queryString; // Собираем URL-адрес с параметрами
+            url += '&' + queryString; // Собираем URL-адрес с параметрами
         }
-		console.log(url);
+        
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error('Failed to fetch filtered objects');
+            throw new Error('Failed to fetch objects');
         }
         const data = await response.json();
-        displayObjects(data); // Отображение отфильтрованных объектов
+        return data;
     } catch (error) {
-        console.error('Error fetching filtered objects:', error);
+        console.error('Error fetching objects:', error);
+        return null;
     }
 }
 
-
-
-
-
-function displayObjects(objects) {
+// Функция для отображения объектов на странице с пагинацией
+async function displayObjects(page = 1) {
+    const filters = getFilters(); // Получаем текущие фильтры
+    const { objects, totalPages } = await getObjects(page, itemsPerPage, filters);
+    
+    if (!objects) {
+        console.error('Failed to fetch objects');
+        return;
+    }
+    
     const container = document.querySelector('.objects__cards-container');
 
     // Очистить контейнер перед добавлением новых объектов
@@ -82,13 +55,65 @@ function displayObjects(objects) {
         const card = createObjectCard(object); // Создаем карточку объекта
         container.appendChild(card); // Добавляем карточку в контейнер
     });
+
+    // Отобразить кнопки постраничной навигации
+    displayPagination(totalPages, page);
 }
+
+// Функция для отображения кнопок постраничной навигации
+function displayPagination(totalPages, currentPage) {
+    const paginationContainer = document.querySelector('.pagination-container');
+    paginationContainer.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.classList.toggle('active', i === currentPage);
+        button.addEventListener('click', () => displayObjects(i));
+        paginationContainer.appendChild(button);
+    }
+}
+
+// Функция для получения текущих фильтров
+function getFilters() {
+    const selectedStatuses = document.querySelectorAll('input[name="state"]:checked');
+    const selectedCenturies = document.querySelectorAll('input[name="century"]:checked');
+    const selectedTypes = document.querySelectorAll('input[name="type"]:checked');
+
+    const filters = {
+        state: [],
+        century: [],
+        type: []
+    };
+
+    selectedStatuses.forEach(status => {
+        filters.state.push(status.value);
+    });
+
+    selectedCenturies.forEach(century => {
+        filters.century.push(century.value);
+    });
+
+    selectedTypes.forEach(type => {
+        filters.type.push(type.value);
+    });
+
+    return filters;
+}
+
+// Вызываем функцию для отображения объектов при загрузке страницы
+window.onload = () => displayObjects(currentPage);
+
+// Обработчик события изменения фильтров
+document.querySelectorAll('.objects__filters-container input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', () => displayObjects(currentPage));
+});
 
 // Функция для создания карточки объекта
 function createObjectCard(object) {
     const card = document.createElement('a');
     card.classList.add('objects__card');
-	card.href = `/api/objects/${object.titleEng}`;
+    card.href = `/api/objects/${object.titleEng}`;
 
     const img = document.createElement('img');
     img.classList.add('objects__card-img');
@@ -129,11 +154,3 @@ function createObjectCard(object) {
 
     return card;
 }
-
-// Вызываем функцию для отображения объектов при загрузке страницы
-window.onload = fetchFilteredObjects;
-
-// Обработчик события изменения фильтров
-document.querySelectorAll('.objects__filters-container input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener('change', fetchFilteredObjects);
-});

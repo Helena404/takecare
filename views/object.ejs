@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="icon" type="image/x-icon" href="/public/img/Logo.svg">
 	<title>Document</title>
 </head>
 
@@ -80,11 +81,11 @@
 				<div class="history__text">
 					<p class="history__p">
 						<% const textLines=object.text.split('\n'); %>
-							<% textLines.forEach(line=> { %>
-								<p class="history__p">
-									<%= line %>
-								</p>
-								<% }); %>
+							<% textLines.forEach((line, index)=> { %>
+								<%= line %>
+									<% if (index !==textLines.length - 1) { %><br> <br>
+										<% } %>
+											<% }); %>
 					</p>
 				</div>
 			</div>
@@ -137,7 +138,7 @@
 			</div>
 		</div>
 	</footer>
-	<script src="/js/object.js"></script>
+	<script src="/js/back.js"></script>
 	<script src="/js/getObjectsForCatalog.js"></script>
 </body>
 

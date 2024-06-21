@@ -25,3 +25,31 @@ window.addEventListener('click', function(event) {
     closeModal();
   }
 });
+
+// Обработчик для отправки формы
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('objectForm');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/api/submit-object', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Объект успешно добавлен');
+                form.reset();
+                closeModal();
+            } else {
+                alert('Ошибка при добавлении объекта');
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Ошибка при добавлении объекта');
+        }
+    });
+});

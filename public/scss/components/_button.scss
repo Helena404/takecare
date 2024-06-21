@@ -15,7 +15,7 @@
 		&:hover{
 			color: var(--accent-color);
 			border: .1rem solid var(--accent-color);
-			background-color:#EB9868;
+			background-color:var(--accent-color-orr-light);
 		}
 		&:active{
 			background-color:var(--accent-color-orr);

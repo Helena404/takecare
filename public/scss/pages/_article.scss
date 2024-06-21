@@ -1,0 +1,36 @@
+.article {
+
+	// .article__content
+
+	&__content {
+	}
+
+	// .article__container
+
+	&__container {
+	}
+
+	// .article__title
+
+	&__title {
+		font-size: 32px;
+		font-weight: 500;
+		margin-bottom: 32px;
+		text-align: center;
+	}
+
+	// .article__img
+
+	&__img {
+    	object-fit: cover;
+		width: 80%;
+		padding-bottom: 35px;
+		margin: 0 auto;
+	}
+
+	// .article__text
+
+	&__text {
+		padding-bottom: 35px;
+	}
+}

@@ -43,14 +43,9 @@
 		font-size: 2rem;
 		font-weight: 500;
 		line-height: 2.8rem;
-		transition: color .2s;
-		@media (any-hover: hover){ //для всех утройств с курсором
-			&:hover{
-				color:var(--accent-color-orr);
-			}
-			&:active{
-				color: #EB9868;
-			}
-		}
 	}
+}
+
+.active{
+	color: var(--accent-color-orr)
 }

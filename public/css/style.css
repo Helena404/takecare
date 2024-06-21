@@ -3,6 +3,7 @@
 :root {
   --bg-color:#F4F6F5;
   --accent-color-orr:#C47344;
+  --accent-color-orr-light: #EB9868;
   --accent-color:#FFE9DC;
   --text-color:#2C2D35;
   --card-bg-color:#FBF8F5;
@@ -32,10 +33,20 @@ a {
   text-decoration: none;
   color: var(--text-color);
   cursor: pointer;
+  transition: color 0.2s;
+}
+@media (any-hover: hover) {
+  a:hover {
+    color: var(--accent-color-orr);
+  }
+  a:active {
+    color: var(--accent-color-orr-light);
+  }
 }
 
 body {
   background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 [class*=__container] {
@@ -52,10 +63,6 @@ body {
 }
 
 html {
-  /**
-     Пригодится в большинстве ситуаций
-     (когда, например, нужно будет "прижать" футер к низу сайта)
-    */
   height: 100%;
   /**
      Плавный скролл
@@ -123,14 +130,6 @@ body,
 p {
   --paragraphMarginBottom: 24px;
   margin-block: 0;
-}
-
-/**
-Внешний отступ вниз для параграфа без атрибута class,
-который расположен не последним среди своих соседних элементов
-  */
-p:where(:not([class]):not(:last-child)) {
-  margin-bottom: var(--paragraphMarginBottom);
 }
 
 /**
@@ -242,7 +241,7 @@ body {
   .btn:hover {
     color: var(--accent-color);
     border: 0.1rem solid var(--accent-color);
-    background-color: #EB9868;
+    background-color: var(--accent-color-orr-light);
   }
   .btn:active {
     background-color: var(--accent-color-orr);
@@ -343,15 +342,10 @@ body {
   font-size: 2rem;
   font-weight: 500;
   line-height: 2.8rem;
-  transition: color 0.2s;
 }
-@media (any-hover: hover) {
-  .menu__link:hover {
-    color: var(--accent-color-orr);
-  }
-  .menu__link:active {
-    color: #EB9868;
-  }
+
+.active {
+  color: var(--accent-color-orr);
 }
 
 /* Стили для модального окна */
@@ -461,47 +455,79 @@ body {
   line-height: 150%;
 }
 
-/*---------------------------education-------------------------------------*/
-.articles__container {
-  padding-bottom: 30px;
+.categories__menu {
+  padding-block: 35px;
 }
-.articles__menu {
-  padding: 3.5rem 0;
-}
-.articles__body {
+.categories__list {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.8rem;
 }
-.articles__big-wrap {
+.highlight {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 70px;
 }
-.articles__big-img {
-  flex: 0 0 55rem;
+.highlight__image {
+  flex-shrink: 0;
+  padding-right: 42px;
 }
-.articles__big-info {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+.highlight__image img {
+  display: block; /* Убирает нижние пробелы под изображением */
+  width: 560px;
+  aspect-ratio: 1;
 }
-.articles__big-title a {
-  font-size: 4rem;
-  line-height: 110%;
+.highlight__info {
+  margin-top: 40px;
 }
-.articles__big-group {
+.highlight__category {
+  color: var(--gray-color-text);
+  display: block;
+  font-size: 18px;
   line-height: 150%;
+}
+.highlight__title {
+  font-size: 40px;
+  line-height: 110%;
+  margin-bottom: 30px;
+}
+.highlight__text {
+  font-size: 18px;
+  line-height: 150%;
+  margin-bottom: 60px;
+}
+.articles {
+  margin-bottom: 70px;
+}
+.articles__list {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.articles__item {
+  width: 350px;
+}
+.articles__image {
+  width: 350px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.articles__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.articles__category {
   color: var(--gray-color-text);
 }
-.articles__big-btn {
-  max-width: 300px;
-  background-color: var(--accent-color-orr);
-  color: #fff;
+.articles__title {
+  margin-bottom: 5px;
 }
-
-.article__big-text {
-  line-height: 150%;
-  font-size: 18px;
+.category-active {
+  color: #C47344;
 }
 
 /*----------------------------hero------------------------------------*/
@@ -582,6 +608,26 @@ body {
   right: 100px;
 }
 
+.custom-balloon {
+  padding: 10px;
+  width: 300px;
+  row-gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-balloon__photo {
+  max-width: 100%;
+}
+
+.custom-balloon__link {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
 /* ============================Object=====================================*/
 .object {
   padding-bottom: 6.5rem;
@@ -657,4 +703,40 @@ body {
 .object__card-info span {
   display: block;
   margin-bottom: 5px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.pagination-container button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--accent-color-orr-light);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.pagination-container button.active {
+  background-color: var(--accent-color-orr);
+}
+
+.article__title {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.article__img {
+  object-fit: cover;
+  width: 80%;
+  padding-bottom: 35px;
+  margin: 0 auto;
+}
+.article__text {
+  padding-bottom: 35px;
 }/*# sourceMappingURL=style.css.map */

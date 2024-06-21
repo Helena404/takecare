@@ -8,33 +8,40 @@ function addMarkers(map, objects) {
 
     // Перебираем массив объектов и добавляем маркеры на карту
     objects.forEach(object => {
-        // Извлекаем координаты объекта
-        const coordinates = object.coordinates.split(',').map(parseFloat);
-        
-        // Создаем маркер
-        const placemark = new ymaps.Placemark(coordinates, {
-            // Здесь можно указать информацию о маркере
-            hintContent: object.title,// заголовок объекта
-			balloonContent: `<a href="/api/objects/${object.titleEng}">${object.title}</a>` // Ссылка на страницу объекта
-        });
+        try {
+            // Извлекаем координаты объекта
+            const coordinates = object.coordinates.split(',').map(parseFloat);
+            
+            // Создаем маркер
+            const placemark = new ymaps.Placemark(coordinates, {
+                // Здесь можно указать информацию о маркере
+                hintContent: object.title, // Всплывающая подсказка при наведении
+                balloonContentHeader: `<h4>${object.title}</h4>`, // Заголовок всплывающего окна
+                balloonContentBody: `
+                    <div class="custom-balloon">
+                        <img src="/img/photoObjects/${object.titleEng}.jpg" class="custom-balloon__photo" alt="${object.title}">
+                        <p>${object.address}</p>
+                        <a href="/api/objects/${object.titleEng}" class="custom-balloon__link btn">Подробнее</a>
+                    </div>
+                ` // Тело всплывающего окна
+            }, {
+                balloonPanelMaxMapArea: 0 // Ограничиваем размер области карты, при открытии панели
+            });
 
-        // Добавляем маркер на карту
-        map.geoObjects.add(placemark);
-
-        // // Добавляем обработчик события клика по маркеру
-		// placemark.events.add('click', () => {
-		// 	displayObjectInfo(object);
-		// 	console.log('hello');
-		// });
+            // Добавляем маркер на карту
+            map.geoObjects.add(placemark);
+        } catch (error) {
+            console.error('Error adding marker:', error);
+        }
     });
 
-
 }
+
 
 // Функция для отправки запроса на сервер и получения списка всех объектов
 async function getMapObjects(map) {
     try {
-        const response = await fetch('/api/objects');
+        const response = await fetch('/api/objectsForMap');
         if (!response.ok) {
             throw new Error('Failed to fetch objects');
         }
@@ -104,10 +111,9 @@ async function fetchFilteredObjects(map) {
     }
 }
 
-
 function init() {
     var map = new ymaps.Map("map", {
-        center: [55.8346,37.54876], // Координаты центра карты
+        center: [55.8346, 37.54876], // Координаты центра карты
         zoom: 5 // Уровень масштабирования
     });
     map.controls.remove('searchControl');
@@ -122,33 +128,3 @@ function init() {
         });
     });
 }
-
-
-
-
-// function displayObjectInfo(object) {
-//     const objectInfoBlock = document.getElementById('objectInfo');
-//     // Очищаем блок перед добавлением новой информации
-//     objectInfoBlock.innerHTML = '';
-    
-// 	const objectInfoLink = document.getElementById('objectInfo');
-// 	const objectTitleEng = object.titleEng;
-// 	const linkHref = `/api/objects/${objectTitleEng}`;
-
-// 	// Добавляем атрибут href к ссылке
-// 	objectInfoLink.setAttribute('href', linkHref);
-
-//     // Создаем элементы для отображения информации об объекте
-//     const title = document.createElement('h2');
-//     title.textContent = object.title;
-
-//     const address = document.createElement('p');
-//     address.textContent = object.address;
-
-//     // Добавляем созданные элементы в блок информации об объекте
-//     objectInfoBlock.appendChild(title);
-//     objectInfoBlock.appendChild(address);
-
-//     // Показываем блок информации об объекте
-//     objectInfoBlock.style.display = 'block';
-// }
