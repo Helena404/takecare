@@ -7,7 +7,6 @@ async function getObjects(page = 1, limit = 5, filters = {}) {
         let url = `/api/objects?page=${page}&limit=${limit}`;
         const queryParams = { ...filters };
 
-        // Преобразуем массивы значений параметров в строку
         const queryString = Object.keys(queryParams)
             .map(key => {
                 if (queryParams[key].length > 0) {
@@ -18,9 +17,8 @@ async function getObjects(page = 1, limit = 5, filters = {}) {
             .filter(param => param !== '')
             .join('&');
 
-        // Проверяем, есть ли параметры для добавления к URL
         if (queryString) {
-            url += '&' + queryString; // Собираем URL-адрес с параметрами
+            url += '&' + queryString;
         }
         
         const response = await fetch(url);
@@ -37,7 +35,7 @@ async function getObjects(page = 1, limit = 5, filters = {}) {
 
 // Функция для отображения объектов на странице с пагинацией
 async function displayObjects(page = 1) {
-    const filters = getFilters(); // Получаем текущие фильтры
+    const filters = getFilters();
     const { objects, totalPages } = await getObjects(page, itemsPerPage, filters);
     
     if (!objects) {
@@ -47,16 +45,13 @@ async function displayObjects(page = 1) {
     
     const container = document.querySelector('.objects__cards-container');
 
-    // Очистить контейнер перед добавлением новых объектов
     container.innerHTML = '';
 
-    // Перебрать массив объектов и отобразить каждый из них
     objects.forEach(object => {
-        const card = createObjectCard(object); // Создаем карточку объекта
-        container.appendChild(card); // Добавляем карточку в контейнер
+        const card = createObjectCard(object);
+        container.appendChild(card);
     });
 
-    // Отобразить кнопки постраничной навигации
     displayPagination(totalPages, page);
 }
 
@@ -101,7 +96,6 @@ function getFilters() {
     return filters;
 }
 
-// Вызываем функцию для отображения объектов при загрузке страницы
 window.onload = () => displayObjects(currentPage);
 
 // Обработчик события изменения фильтров

@@ -88,10 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const category = link.textContent.trim();
 
-            // Снять класс 'category-active' со всех ссылок
             categoryLinks.forEach(link => link.classList.remove('category-active'));
 
-            // Добавить класс 'category-active' к текущей нажатой ссылке
             link.classList.add('category-active');
 
             getArticles(category);

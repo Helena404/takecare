@@ -31,10 +31,9 @@
    overflow: hidden;
 	}
 	&__photo img {
-		width: 100%; /* 100% ширины изображения */
-		height: 100%; /* 100% высоты изображения */
-		object-fit: cover; /* Изображение заполняет контейнер, сохраняя при этом пропорции */
-		//object-position: center center; 
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 		 }
 
 	// .object__info

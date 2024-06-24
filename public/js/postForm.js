@@ -14,8 +14,8 @@ document.getElementById('objectForm').addEventListener('submit', async (e) => {
         }
 
         const result = await response.text();
-        alert(result); // Сообщение об успешной отправке
-        e.target.reset(); // Сброс формы
+        alert(result);
+        e.target.reset();
     } catch (error) {
         console.error('Error submitting object:', error);
     }

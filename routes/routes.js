@@ -23,15 +23,12 @@ router.get('/objectsForMap', async (req, res) => {
 
 router.get('/objects', async (req, res) => {
     try {
-        // Получаем параметры пагинации из запроса
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 5;
 
-        // Вычисляем индексы для выборки из базы данных
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
 
-        // Создаем объект фильтров на основе запроса
         const query = {};
 
         if (req.query.state) {
@@ -44,14 +41,11 @@ router.get('/objects', async (req, res) => {
             query.type = { $in: req.query.type.split(',') };
         }
 
-        // Получаем общее количество объектов для текущих фильтров
         const totalObjects = await Architecture.countDocuments(query).exec();
         const totalPages = Math.ceil(totalObjects / limit);
 
-        // Получаем объекты с учетом фильтров и пагинации
         const objects = await Architecture.find(query).limit(limit).skip(startIndex).exec();
 
-        // Отправляем ответ с объектами и количеством страниц
         res.json({
             objects,
             totalPages,
@@ -67,10 +61,8 @@ router.get('/objects', async (req, res) => {
 // Маршрут для получения объектов с координатами
 router.get('/objects/coordinates', async (req, res) => {
     try {
-        // Ищем объекты, у которых есть координаты
         const objectsWithCoordinates = await Architecture.find({ coordinates: { $exists: true, $ne: null } });
 
-        // Отправляем массив объектов с координатами
         res.json(objectsWithCoordinates);
     } catch (err) {
         console.error(err);
@@ -93,10 +85,8 @@ router.get('/objects/random', async (req, res) => {
 // Маршрут для фильтрации объектов
 router.get('/objects/filter', async (req, res) => {
     try {
-        // Извлечение параметров фильтрации из запроса
         const { century, state, type } = req.query;
 
-        // Построение объекта запроса на основе переданных параметров
         const query = {};
 
         if (century) {
@@ -112,12 +102,9 @@ router.get('/objects/filter', async (req, res) => {
             query.type = { $in: types };
         }
 
-        // Поиск объектов в базе данных согласно параметрам запроса
         const objects = await Architecture.find(query);
-        // Возвращение найденных объектов в качестве ответа на запрос
         res.json(objects);
     } catch (err) {
-        // Обработка ошибок
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
@@ -142,7 +129,7 @@ router.post('/submit-object', upload.single('photo'), async (req, res) => {
         const photo = req.file ? `/uploads/${req.file.filename}` : null;
 
         const newSubmission = new UserSubmission({
-            userId: null, // Убираем зависимость от userId
+            userId: null, 
             objectInfo: {
                 name,
                 address,

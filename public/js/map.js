@@ -3,32 +3,26 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function addMarkers(map, objects) {
-    // Очищаем все текущие маркеры на карте
     map.geoObjects.removeAll();
 
-    // Перебираем массив объектов и добавляем маркеры на карту
     objects.forEach(object => {
         try {
-            // Извлекаем координаты объекта
             const coordinates = object.coordinates.split(',').map(parseFloat);
             
-            // Создаем маркер
             const placemark = new ymaps.Placemark(coordinates, {
-                // Здесь можно указать информацию о маркере
-                hintContent: object.title, // Всплывающая подсказка при наведении
-                balloonContentHeader: `<h4>${object.title}</h4>`, // Заголовок всплывающего окна
+                hintContent: object.title,
+                balloonContentHeader: `<h4>${object.title}</h4>`,
                 balloonContentBody: `
                     <div class="custom-balloon">
                         <img src="/img/photoObjects/${object.titleEng}.jpg" class="custom-balloon__photo" alt="${object.title}">
                         <p>${object.address}</p>
                         <a href="/api/objects/${object.titleEng}" class="custom-balloon__link btn">Подробнее</a>
                     </div>
-                ` // Тело всплывающего окна
+                `
             }, {
-                balloonPanelMaxMapArea: 0 // Ограничиваем размер области карты, при открытии панели
+                balloonPanelMaxMapArea: 0
             });
 
-            // Добавляем маркер на карту
             map.geoObjects.add(placemark);
         } catch (error) {
             console.error('Error adding marker:', error);
@@ -46,7 +40,7 @@ async function getMapObjects(map) {
             throw new Error('Failed to fetch objects');
         }
         const data = await response.json();
-        addMarkers(map, data); // Добавляем маркеры на карту
+        addMarkers(map, data);
     } catch (error) {
         console.error('Error fetching objects:', error);
     }
@@ -60,9 +54,8 @@ async function fetchFilteredObjects(map) {
 
         let url = '/api/objects/filter';
 
-        const queryParams = {}; // Объект для хранения параметров запроса
+        const queryParams = {};
 
-        // Добавляем параметры фильтрации в объект queryParams
         queryParams.state = [];
         selectedStatuses.forEach(status => {
             queryParams.state.push(status.value);
@@ -78,7 +71,6 @@ async function fetchFilteredObjects(map) {
             queryParams.type.push(type.value);
         });
 
-        // Преобразуем массивы значений параметров в строку
         const queryString = Object.keys(queryParams)
             .map(key => {
                 if (queryParams[key].length > 0) {
@@ -89,9 +81,8 @@ async function fetchFilteredObjects(map) {
             .filter(param => param !== '')
             .join('&');
 
-        // Проверяем, есть ли параметры для добавления к URL
         if (queryString) {
-            url += '?' + queryString; // Собираем URL-адрес с параметрами
+            url += '?' + queryString;
         }
         console.log(url);
 
@@ -101,10 +92,8 @@ async function fetchFilteredObjects(map) {
         }
         const data = await response.json();
 
-        // Удаляем текущие маркеры с карты
         map.geoObjects.removeAll();
 
-        // Добавляем новые маркеры на карту
         addMarkers(map, data);
     } catch (error) {
         console.error('Error fetching filtered objects:', error);
@@ -113,15 +102,14 @@ async function fetchFilteredObjects(map) {
 
 function init() {
     var map = new ymaps.Map("map", {
-        center: [55.8346, 37.54876], // Координаты центра карты
-        zoom: 5 // Уровень масштабирования
+        center: [55.8346, 37.54876],
+        zoom: 5
     });
     map.controls.remove('searchControl');
     map.controls.remove('trafficControl');
 
-    getMapObjects(map); // Получаем объекты с сервера и добавляем маркеры на карту
+    getMapObjects(map);
 
-    // Передаем переменную map в обработчик события
     document.querySelectorAll('.maps__filters-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', () => {
             fetchFilteredObjects(map);

@@ -24,38 +24,10 @@ mongoose.connect('mongodb://localhost:27017/objectsbox')
         console.error('Failed to connect to MongoDB', err);
     });
 
-// 	 // Создание новой статьи
-// 	 const newArticle = new Architecture({
-// 		title: "Памятник в честь 50-летия Советского Союза",
-// 		titleEng:"pamyatnik-50-let",
-// 		address: "Челябинская область, г. Сатка, ул. 2-ая речная",
-// 		gosreester: "-",
-// 		category: "Памятник",
-// 		securityStatus: "-",
-// 		date: "1972",
-// 		coordinates: "55.04083, 58.967079",
-// 		photoUrl: "/img/photoObjects/pamyatnik-50-let.jpg",
-// 		century: "XX",
-// 		state: "middle",
-// 		typeRu: "Сооружение",
-// 		type: "monument",
-// 		text: `Челябинская область, город Сатка, "Серп и молот". Скульптурная композиция возвышается на сопке в центральной части города. Памятник был установлен в городе в 1972 году в честь 50-летия образования СССР, по инициативе Саткинского ГК КПСС и исполкома городского совета народных депутатов.
-// Виталий Чернецов, саткинский краевед, считает памятный знак уродливым гибридом из серпа, молота и пятиконечной звезды – символов СССР. Он пишет: «Поскольку в брежневский застойный период экономические и политические структуры страны были поставлены задом наперёд, то и государственную символику сварганили шиворот-навыворот. Никакой исторической ценности памятный знак не представляет. Зато в полной мере он отразил нашу идеологическую, мировоззренческую отсталость, упадок отечественной культуры, серость и однобокость доперестроечной, дореформенной эпохи, закат «развитого социализма»
-		
-// 		`
-// 	});
 
-// 	// Сохранение новой статьи в базу данных
-// 	newArticle.save()
-// 		.then(article => {
-// 			console.log('Architecture saved:', article);
-// 		})
-// 		.catch(error => {
-// 			console.error('Error saving article:', error);
-// 		});
 
 // Использование маршрутов API
-app.use('/api', routes); // Используем файл маршрутов
+app.use('/api', routes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -78,10 +50,7 @@ app.get('/api/objects/:titleEng', async (req, res) => {
         if (!object) {
             return res.status(404).send('Object not found'); 
         }
-		// Отправляем HTML страницу с внедренными данными объекта
         res.render('object', { object });
-        // Затем отправляем файл object.html в ответ на запрос
-        //res.sendFile(path.join(__dirname, 'public', 'object.html'));
     } catch (error) {
         console.error('Error handling request:', error);
         res.status(500).send('Server Error');
@@ -107,12 +76,10 @@ app.get('/highlight', (req, res) => {
 // Маршрут для получения статьи по ID
 app.get('/articles/:id', async (req, res) => {
     try {
-        // Ищем статью по ID
         const article = await Article.findById(req.params.id);
         if (!article) {
             return res.status(404).send('Article not found');
         }
-        // Рендерим страницу с данными статьи
         res.render('article', { article });
     } catch (error) {
         console.error('Error handling request:', error);

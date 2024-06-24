@@ -24,12 +24,9 @@ async function displayRandomObjects() {
         
         const container = document.querySelector('.catalog__cards');
 
-        // Очистить контейнер перед добавлением новых объектов
         container.innerHTML = '';
 
-        // Перебрать массив объектов
         objects.forEach(object => {
-            // Создать HTML-элементы для отображения информации о каждом объекте
             const card = document.createElement('div');
             card.classList.add('catalog__card');
 
@@ -52,13 +49,11 @@ async function displayRandomObjects() {
             button.textContent = 'Подробнее';
 			button.href = `/api/objects/${object.titleEng}`;
 			
-            // Добавить элементы в карточку
             card.appendChild(img);
             card.appendChild(title);
             card.appendChild(address);
             card.appendChild(button);
 
-            // Добавить карточку в контейнер
             container.appendChild(card);
         });
     } catch (error) {
@@ -66,7 +61,6 @@ async function displayRandomObjects() {
     }
 }
 
-// Получить и отобразить случайные объекты при загрузке страницы
 window.onload = async function() {
     await displayRandomObjects();
 };
